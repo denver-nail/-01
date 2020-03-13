@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+
+int main(int argc, char const *argv[])
+{
+	FILE * fp;  //打开文件 
+	fp = fopen("badapple.txt", "r");//只读模式打开文本badapple 
+	fseek(fp, 0, SEEK_END);// 把文件内部指针移动到文件结尾 
+	
+	
+	int file_size = ftell(fp);//获取文件指针当前位置 ，得到文件的大小 
+	printf("%d\n", file_size);
+	
+	char * tmp;//一个char型指针存放tmp 
+	
+	fseek(fp, 0, SEEK_SET);//把文件内部指针移到文件的开头 
+	tmp = (char *)malloc(file_size * sizeof(char));//给tmp分配文件大小的char型空间 
+	fread(tmp, file_size, sizeof(char), fp);//读取文件 
+	
+	char * delim = "nekomark"; //设定nekomark为分割字符串
+	
+	
+	char * p = NULL;
+	p = strtok(tmp, delim);//在nekomark处分割 
+	while (p != NULL)
+	{
+		system("cls");//清屏 
+		printf("%s", p);//输出分割出前的字符串 
+		usleep(50000);//延迟50000微秒 
+		p = strtok(NULL, delim);
+	}
+
+
+
+	return 0;
+}
