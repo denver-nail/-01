@@ -1,0 +1,143 @@
+#include <stdio.h>
+ 
+ int main()//主函数 
+ {
+int tianshu(int year,int mouth,int day);//天数函数 
+
+	int i,y1,y2,m1,m2,d1,d2,leap=0,days1,days2;//定义变量y1，m1，d1出生年月，y2，m2，d2测定年月,出生到一月一天数days1，测定到一月一天数days2 
+	
+	 
+	printf("请输入你的出生年月日（例如1980 2 14）：");//输入出生年月，测定年月 
+	scanf("%d %d %d",&y1,&m1,&d1);
+	printf("请输入测定年月日（例如2020 5 8）：");
+	scanf("%d %d %d",&y2,&m2,&d2);
+	
+	
+	
+	for(i=y1;i<y2;i++)//闰年数计算 
+	{
+		if((i%4==0&&i%100!=0)||(i%400==0))
+		{
+		    leap++;
+		}
+	}
+
+     int y;
+	  y = y2-y1;//测定年-出生年 
+	  
+	  days1=tianshu(y1,m1,d1);
+	  days2=tianshu(y2,m2,d2);
+	  
+	  int zongshu;//总天数
+	  zongshu= y*365+leap-days1+days2;
+	  
+	
+
+
+
+
+    int yushu1,yushu2,yushu3 ;  //定义变量
+ 
+yushu1=zongshu%23;    //求余，yushu1为体力节律，yushu2为情绪节律，yushu3为智力节律 
+yushu2=zongshu%28;
+yushu3=zongshu%33;
+
+if(yushu1==0)      //判断体力所处时期 
+printf("体力刚好为周期日\n");
+
+if(yushu1>=1&&yushu1<12)
+printf("体力处在高潮期第%d天\n",yushu1);
+
+if(yushu1==12)
+printf("体力刚好处在临界日\n");
+
+if(yushu1>12)
+printf("体力处在低潮期第%d天\n",yushu1-12);
+
+
+ 
+if(yushu2==0)      //判断情绪所处时期 
+printf("情绪刚好为周期日\n");
+
+if(yushu2>=1&&yushu2<14)
+printf("情绪处在高潮期第%d天\n",yushu2);
+
+if(yushu2==14)
+printf("情绪刚好处在临界日\n");
+
+if(yushu2>14)
+printf("情绪处在低潮期第%d天\n",yushu2-14);
+
+
+ if(yushu3==0)      //判断智力所处时期 
+printf("智力刚好为周期日\n");
+
+if(yushu3>=1&&yushu3<17)
+printf("智力处在高潮期第%d天\n",yushu3);
+
+if(yushu3==17)
+printf("智力刚好处在临界日\n");
+
+if(yushu3>17)
+printf("智力处在低潮期第%d天\n",yushu3-17);
+ 
+ 
+
+return 0;	 
+	
+
+     
+ }
+ 
+ 
+ int leapyear(int year)//闰年判断函数 
+{
+	if(year%400==0||(year%4==0&&year%100!=0))
+	{
+	
+	return 1;//是闰年 
+   }
+	else
+	{
+	return 0;//不是闰年 
+   }
+}
+ 
+ 
+ int tianshu (int year,int month,int day)//计算天数函数 
+ {
+     int i,mday=0, allday= 0,mondays[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+     
+         if(month >= 2)
+		 {
+		 	
+		 	
+            if(leapyear(year) == 1)//闰年二月 
+			{
+                mondays[1] = 29;
+                 for(i=0; i<month-1; i++)
+				 {
+                     mday= mday+mondays[i];       
+                 }
+                 allday=day+mday;
+                return    allday;
+            }
+            
+            
+            
+			else
+			{
+                 for(i=0;i < month-1;i++)
+				 {
+                     mday = mday+mondays[i];
+ 
+                }
+                allday=mday+day;
+                return allday;
+             }
+        }        
+     
+     return 0;
+ }
+ 
+ 
