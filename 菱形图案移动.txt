@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<windows.h>
+#include<time.h>
+#include<stdlib.h>
+int main()
+{
+	void printf_star(int x);
+	void printf_null(int num);
+	int  j,k;
+	
+	
+		for (j = 0; j <= 50; j++)
+		{
+			for (k = 1; k <= 5; k++)
+			{
+				printf_null(j);
+				printf_star(k);
+			}
+			Sleep(100);
+			system("cls");
+		}
+		
+		
+	
+
+	return 0;
+}  void printf_star(int x)//绘制菱形函数 
+{
+	if (x ==1)
+		printf("  *\n");
+	else
+	{
+		if (x == 2)
+			printf(" ***\n");
+		else
+		{
+
+			if (x == 3)
+				printf("*****\n");
+			else
+			{
+				if (x == 4)
+					printf(" ***\n");
+
+				else 
+					printf("  *\n");
+			}
+		}
+	}
+}
+
+
+void printf_null(int num)//绘制空格函数
+{
+	int i;
+		for (i = 1; i <= num; i++)
+		{
+
+			printf("  ");
+		}
+		
+	
+}
